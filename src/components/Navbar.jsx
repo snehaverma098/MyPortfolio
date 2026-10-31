@@ -8,22 +8,26 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      // Show floating navbar only when user has scrolled down past the hero banner
+      const heroEl = document.getElementById('hero');
+      const threshold = heroEl ? Math.min(heroEl.offsetHeight * 0.7, 400) : 250;
+      setScrolled(window.scrollY > threshold);
 
-      const sections = ['hero', 'about', 'projects', 'skills', 'focus', 'journey', 'contact'];
+      const sections = ['hero', 'about', 'projects', 'skills', 'experience', 'focus', 'journey', 'contact'];
       const scrollPosition = window.scrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const sectionId = sections[i];
         const el = document.getElementById(sectionId);
         if (el && scrollPosition >= el.offsetTop) {
-          setActiveSection(sectionId);
+          setActiveSection(sectionId === 'journey' ? 'experience' : sectionId);
           break;
         }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -41,17 +45,17 @@ const Navbar = () => {
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Projects', href: '#projects', id: 'projects' },
     { name: 'Skills', href: '#skills', id: 'skills' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
     { name: 'Focus', href: '#focus', id: 'focus' },
-    { name: 'Journey', href: '#journey', id: 'journey' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform ${
         scrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-[#38231F]/10 py-3.5' 
-          : 'bg-white/80 backdrop-blur-sm py-5'
+          ? 'opacity-100 translate-y-0 pointer-events-auto bg-white/95 backdrop-blur-md shadow-sm border-b border-[#38231F]/10 py-3.5' 
+          : 'opacity-0 -translate-y-full pointer-events-none py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">

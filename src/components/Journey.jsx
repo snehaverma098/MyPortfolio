@@ -73,6 +73,7 @@ const Journey = () => {
       id="journey" 
       className="py-24 sm:py-32 relative bg-white border-t border-[#38231F]/10 overflow-hidden"
     >
+      <div id="experience" className="absolute -top-16 left-0" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}

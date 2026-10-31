@@ -1,148 +1,285 @@
 import React from 'react';
-import { ArrowRight, Mail } from 'lucide-react';
-import { GithubIcon, LinkedinIcon } from './Icons';
 
 const Hero = () => {
+  const smoothScrollTo = (e, targetId) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+  };
+
   return (
     <section 
       id="hero" 
-      className="relative min-h-[90vh] pt-32 sm:pt-40 pb-20 lg:pb-28 bg-white flex flex-col justify-center items-center overflow-hidden text-center"
+      className="relative w-full bg-[#948276] flex items-center justify-center overflow-hidden select-none"
     >
-      {/* Subtle Warm Background Ambience */}
-      <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#FFFDF8] rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#F45168]/[0.03] rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute top-32 left-10 w-80 h-80 bg-[#7546C8]/[0.02] rounded-full blur-3xl pointer-events-none -z-10" />
-
-      {/* Floating Left Socials Rail (Desktop) */}
-      <div className="hidden xl:flex fixed left-8 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-4 text-[#38231F]">
-        <span className="font-mono text-[9px] tracking-widest text-[#38231F]/60 -rotate-90 mb-4 uppercase font-bold">
-          CONNECT
-        </span>
-        <div className="w-px h-8 bg-[#38231F]/20" />
-        
-        <a
-          href="https://github.com/snehaverma098"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2.5 rounded-full bg-white border border-[#38231F]/15 hover:border-[#38231F] text-[#38231F] hover:bg-[#38231F] hover:text-white transition-all shadow-xs hover:-translate-x-1"
-          aria-label="GitHub Profile"
-        >
-          <GithubIcon className="w-4 h-4" />
-        </a>
-
-        <a
-          href="https://www.linkedin.com/in/snehaverma-ai/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2.5 rounded-full bg-white border border-[#38231F]/15 hover:border-[#2855D9] text-[#2855D9] hover:bg-[#2855D9] hover:text-white transition-all shadow-xs hover:-translate-x-1"
-          aria-label="LinkedIn Profile"
-        >
-          <LinkedinIcon className="w-4 h-4" />
-        </a>
-
-        <a
-          href="mailto:snehpreet9846@gmail.com"
-          className="p-2.5 rounded-full bg-white border border-[#38231F]/15 hover:border-[#F45168] text-[#F45168] hover:bg-[#F45168] hover:text-white transition-all shadow-xs hover:-translate-x-1"
-          aria-label="Send Email"
-        >
-          <Mail className="w-4 h-4" />
-        </a>
-
-        <div className="w-px h-12 bg-[#38231F]/20" />
+      {/* Hidden SEO & Accessibility semantic tree */}
+      <div className="sr-only">
+        <h1>Sneha Verma — AI & Full Stack Developer</h1>
+        <p>I craft intelligent and elegant web experiences, blending code with creativity.</p>
+        <div>
+          <span>3+ Projects Built</span>
+          <span>8+ CGPA (Expected)</span>
+          <span>Hackathons Participated</span>
+        </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-center">
+      {/* Hero 16:9 Aspect Ratio Frame (1024 x 576 Native Resolution) */}
+      <div className="relative w-full max-w-[1920px] aspect-[1024/576] mx-auto overflow-hidden shadow-2xl">
         
-        {/* Playful Handwritten Greeting */}
-        <div className="inline-flex items-center justify-center gap-2 mb-3">
-          <span className="font-caveat text-3xl sm:text-4xl text-[#F45168] font-bold -rotate-2">
-            Hello there! I'm
-          </span>
-          <svg className="w-7 h-7 text-[#F45168]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-          </svg>
-        </div>
+        {/* Exact Visual Artwork with Zero Modification */}
+        <img 
+          src="/images/hero_exact.png" 
+          alt="Sneha Verma - AI & Full Stack Developer editorial portfolio hero section" 
+          className="w-full h-full object-cover block pointer-events-none"
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
+        />
 
-        {/* ENORMOUS, BOLDER NAME: THE DEFINING STAR OF THE PORTFOLIO */}
-        <div className="space-y-2 mb-4">
-          <h1 className="font-playfair font-black text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.95] text-[#38231F]">
-            Sneha{' '}
-            <span className="text-[#F45168] relative inline-block">
-              Verma
-              {/* Playful Hand-drawn style underline */}
-              <svg 
-                className="absolute -bottom-2 sm:-bottom-4 left-0 w-full h-4 sm:h-6 text-[#F45168]" 
-                viewBox="0 0 200 12" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                preserveAspectRatio="none"
-              >
-                <path 
-                  d="M2 9.5C50 3.5 150 2 198 8.5" 
-                  stroke="currentColor" 
-                  strokeWidth="4.5" 
-                  strokeLinecap="round" 
-                />
-              </svg>
-            </span>
-          </h1>
-        </div>
+        {/* ---------------- INTERACTIVE HOTSPOT OVERLAYS ---------------- */}
 
-        {/* BOLDER, CONFIDENT ACADEMIC & TECHNICAL SUBTITLE */}
-        <div className="pt-3 pb-2 space-y-4 max-w-3xl mx-auto">
-          <h2 className="font-sans font-bold text-xl sm:text-2xl md:text-3xl text-[#38231F] leading-snug">
-            Second-year B.Tech Computer Science Engineering student focused on{' '}
-            <span className="text-[#7546C8] font-extrabold underline decoration-[#7546C8]/30 decoration-2 underline-offset-4">
-              Artificial Intelligence & Machine Learning
-            </span>{' '}
-            at Lovely Professional University.
-          </h2>
+        {/* 1. SV Brand Monogram Logo (Top-Left) -> Scrolls to Hero */}
+        <a
+          href="#hero"
+          onClick={(e) => smoothScrollTo(e, 'hero')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-[#38231F]/30"
+          style={{
+            left: '3.40%',
+            top: '3.40%',
+            width: '4.20%',
+            height: '5.60%',
+          }}
+          title="Sneha Verma (SV) - Top of page"
+          aria-label="Sneha Verma - Return to top"
+        >
+          <span className="sr-only">Sneha Verma</span>
+        </a>
 
-          <p className="font-sans font-semibold text-base sm:text-lg text-[#38231F]/85 max-w-2xl mx-auto leading-relaxed">
-            Learning to build practical software, explore applied machine learning, and create thoughtful, well-crafted digital experiences.
-          </p>
-        </div>
+        {/* 2. Top Nav: Home */}
+        <a
+          href="#hero"
+          onClick={(e) => smoothScrollTo(e, 'hero')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '32.00%',
+            top: '3.40%',
+            width: '4.60%',
+            height: '5.40%',
+          }}
+          title="Home"
+          aria-label="Home section"
+        >
+          <span className="sr-only">Home</span>
+        </a>
 
-        {/* Bolder Authentic Credentials Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-3 pb-3">
-          <span className="px-4 py-2 rounded-full bg-[#FFFDF8] border-2 border-[#38231F]/20 font-mono text-xs sm:text-sm font-bold text-[#38231F] flex items-center gap-2 shadow-xs">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#176B50]" />
-            <span>8.0 CGPA • CSE (AI & ML)</span>
-          </span>
+        {/* 3. Top Nav: About */}
+        <a
+          href="#about"
+          onClick={(e) => smoothScrollTo(e, 'about')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '38.00%',
+            top: '3.40%',
+            width: '4.60%',
+            height: '5.40%',
+          }}
+          title="About"
+          aria-label="About section"
+        >
+          <span className="sr-only">About</span>
+        </a>
 
-          <span className="px-4 py-2 rounded-full bg-[#FFFDF8] border-2 border-[#7546C8]/40 font-mono text-xs sm:text-sm font-bold text-[#7546C8] shadow-xs">
-            GSSoC '26 Contributor
-          </span>
+        {/* 4. Top Nav: Projects */}
+        <a
+          href="#projects"
+          onClick={(e) => smoothScrollTo(e, 'projects')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '43.80%',
+            top: '3.40%',
+            width: '5.20%',
+            height: '5.40%',
+          }}
+          title="Projects"
+          aria-label="Projects section"
+        >
+          <span className="sr-only">Projects</span>
+        </a>
 
-          <span className="px-4 py-2 rounded-full bg-[#FFFDF8] border-2 border-[#D96B35]/40 font-mono text-xs sm:text-sm font-bold text-[#D96B35] shadow-xs">
-            IBM SkillsBuild AI
-          </span>
-        </div>
+        {/* 5. Top Nav: Skills */}
+        <a
+          href="#skills"
+          onClick={(e) => smoothScrollTo(e, 'skills')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '50.40%',
+            top: '3.40%',
+            width: '4.20%',
+            height: '5.40%',
+          }}
+          title="Skills"
+          aria-label="Skills section"
+        >
+          <span className="sr-only">Skills</span>
+        </a>
 
-        {/* Primary Centered Calls to Action */}
-        <div className="pt-4 flex flex-wrap items-center justify-center gap-4 w-full sm:w-auto">
-          <a
-            href="#projects"
-            className="btn-espresso group text-base sm:text-lg font-bold px-8 py-3.5 shadow-md hover:scale-105"
-          >
-            <span>Explore My Projects</span>
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1.5" />
-          </a>
+        {/* 6. Top Nav: Experience */}
+        <a
+          href="#experience"
+          onClick={(e) => smoothScrollTo(e, 'experience')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '55.80%',
+            top: '3.40%',
+            width: '6.60%',
+            height: '5.40%',
+          }}
+          title="Experience & Milestones"
+          aria-label="Experience section"
+        >
+          <span className="sr-only">Experience</span>
+        </a>
 
-          <a
-            href="#contact"
-            className="btn-outline-espresso text-base sm:text-lg font-bold px-8 py-3.5 shadow-xs hover:scale-105"
-          >
-            <span>Contact Me</span>
-          </a>
-        </div>
+        {/* 7. Top Nav: Contact */}
+        <a
+          href="#contact"
+          onClick={(e) => smoothScrollTo(e, 'contact')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '63.80%',
+            top: '3.40%',
+            width: '5.20%',
+            height: '5.40%',
+          }}
+          title="Contact"
+          aria-label="Contact section"
+        >
+          <span className="sr-only">Contact</span>
+        </a>
 
-        {/* Handwritten footnote centered */}
-        <div className="flex items-center justify-center gap-2 pt-4">
-          <span className="font-caveat text-xl sm:text-2xl text-[#176B50] font-bold">
-            ✓ Currently open for summer 2026 software & AI/ML internships
-          </span>
-        </div>
+        {/* 8. Top Nav Action: "Let's Talk ✦" Pill Button */}
+        <a
+          href="#contact"
+          onClick={(e) => smoothScrollTo(e, 'contact')}
+          className="absolute z-20 cursor-pointer rounded-full transition-all hover:ring-2 hover:ring-white/40 hover:bg-white/10 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-white/60"
+          style={{
+            left: '86.40%',
+            top: '3.00%',
+            width: '11.80%',
+            height: '6.20%',
+          }}
+          title="Let's Talk - Get in Touch"
+          aria-label="Let's Talk - Contact Sneha Verma"
+        >
+          <span className="sr-only">Let's Talk</span>
+        </a>
+
+        {/* 9. Hero Primary CTA: "View My Work →" Dark Maroon Pill Button */}
+        <a
+          href="#projects"
+          onClick={(e) => smoothScrollTo(e, 'projects')}
+          className="absolute z-20 cursor-pointer rounded-full transition-all hover:ring-2 hover:ring-[#8E2838]/60 hover:bg-[#8E2838]/20 hover:shadow-lg hover:shadow-black/30 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#8E2838]"
+          style={{
+            left: '5.40%',
+            top: '64.80%',
+            width: '12.80%',
+            height: '6.80%',
+          }}
+          title="View My Work - Featured Engineering Projects"
+          aria-label="View My Work"
+        >
+          <span className="sr-only">View My Work</span>
+        </a>
+
+        {/* 10. Hero Secondary CTA: "Download Resume ↓" Underlined Action */}
+        <a
+          href="/sneha_verma_resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          download="Sneha_Verma_Resume.pdf"
+          className="absolute z-20 cursor-pointer rounded-sm transition-all hover:bg-black/5 hover:ring-1 hover:ring-[#38231F]/30 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#38231F]/40"
+          style={{
+            left: '20.40%',
+            top: '65.40%',
+            width: '11.40%',
+            height: '5.80%',
+          }}
+          title="Download Sneha Verma's Resume (PDF)"
+          aria-label="Download Resume"
+        >
+          <span className="sr-only">Download Resume</span>
+        </a>
+
+        {/* 11. Stat Item: "3+ Projects Built" */}
+        <a
+          href="#projects"
+          onClick={(e) => smoothScrollTo(e, 'projects')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '5.40%',
+            top: '78.80%',
+            width: '8.50%',
+            height: '7.60%',
+          }}
+          title="3+ Featured Projects Built - Click to explore"
+          aria-label="3+ Projects Built"
+        >
+          <span className="sr-only">3+ Projects Built</span>
+        </a>
+
+        {/* 12. Stat Item: "8+ CGPA (Expected)" */}
+        <a
+          href="#about"
+          onClick={(e) => smoothScrollTo(e, 'about')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '17.80%',
+            top: '78.80%',
+            width: '8.50%',
+            height: '7.60%',
+          }}
+          title="8+ CGPA (Expected) in B.Tech CSE AI & ML - Click for education background"
+          aria-label="8+ CGPA Expected"
+        >
+          <span className="sr-only">8+ CGPA (Expected)</span>
+        </a>
+
+        {/* 13. Stat Item: "Hackathons Participated" */}
+        <a
+          href="#experience"
+          onClick={(e) => smoothScrollTo(e, 'experience')}
+          className="absolute z-20 cursor-pointer rounded-md transition-all hover:bg-black/5 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '31.00%',
+            top: '78.80%',
+            width: '11.00%',
+            height: '7.60%',
+          }}
+          title="Hackathons Participated & Open Source - Click for experience chronology"
+          aria-label="Hackathons Participated"
+        >
+          <span className="sr-only">Hackathons Participated</span>
+        </a>
+
+        {/* 14. Bottom "Scroll to explore" Button */}
+        <a
+          href="#about"
+          onClick={(e) => smoothScrollTo(e, 'about')}
+          className="absolute z-20 cursor-pointer rounded-sm transition-all hover:opacity-75 focus:outline-none focus:ring-1 focus:ring-[#38231F]/30"
+          style={{
+            left: '5.60%',
+            top: '92.60%',
+            width: '8.80%',
+            height: '4.80%',
+          }}
+          title="Scroll down to explore About section"
+          aria-label="Scroll to explore"
+        >
+          <span className="sr-only">Scroll to explore</span>
+        </a>
 
       </div>
     </section>
