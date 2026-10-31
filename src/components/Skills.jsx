@@ -1,130 +1,199 @@
 import React, { useState } from 'react';
-import { Code, Layout, Server, Cpu, Wrench } from 'lucide-react';
+import { Code, Layout, Cpu, Wrench } from 'lucide-react';
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [filterMode, setFilterMode] = useState('All');
+  const [selectedTech, setSelectedTech] = useState(null);
 
-  const skillCategories = [
+  const skillsData = [
     {
-      name: 'Languages',
+      category: 'Programming Languages',
       icon: Code,
-      accent: 'text-amber-400',
-      bg: 'bg-amber-400/10',
-      skills: ['C++', 'Python', 'C', 'JavaScript', 'HTML', 'CSS', 'SQL']
+      accentColor: '#2855D9', // Cobalt Blue
+      tagBg: '#2855D912',
+      items: [
+        { name: 'Python', status: 'Used in projects', note: 'Primary language for MindEdu AI, VoteWise AI, and NLP data pipelines' },
+        { name: 'C++', status: 'Core fundamentals', note: 'Data structures, algorithmic problem solving, and academic coursework' },
+        { name: 'C', status: 'Core fundamentals', note: 'Procedural systems programming baseline and memory management' },
+        { name: 'JavaScript (ES6+)', status: 'Used in projects', note: 'Interactive web applications, DOM APIs, and React component logic' },
+        { name: 'SQL', status: 'Core fundamentals', note: 'Relational schema design and data querying' },
+      ],
     },
     {
-      name: 'Frontend',
-      icon: Layout,
-      accent: 'text-yellow-400',
-      bg: 'bg-yellow-400/10',
-      skills: ['React.js', 'Vite', 'Tailwind CSS', 'HTML5', 'CSS3']
-    },
-    {
-      name: 'Backend',
-      icon: Server,
-      accent: 'text-amber-300',
-      bg: 'bg-amber-500/10',
-      skills: ['FastAPI', 'Flask', 'REST APIs']
-    },
-    {
-      name: 'AI / ML',
+      category: 'AI & Machine Learning',
       icon: Cpu,
-      accent: 'text-amber-400',
-      bg: 'bg-amber-400/10',
-      skills: ['Generative AI', 'AI Agents', 'Sentiment Analysis', 'Machine Learning']
+      accentColor: '#7546C8', // Rich Violet
+      tagBg: '#7546C812',
+      items: [
+        { name: 'Generative AI & LLMs', status: 'Used in projects', note: 'Applied prompt engineering, temperature controls, and study schedule synthesis' },
+        { name: 'NLP & Sentiment Analysis', status: 'Used in projects', note: 'Student reflection journal polarity evaluation in MindEdu AI' },
+        { name: 'AI Agents & Tool Calling', status: 'Practicing', note: 'Exploring agentic orchestration and multi-step reasoning workflows' },
+        { name: 'Data Visualization', status: 'Used in projects', note: 'Chart.js metrics dashboards for student academic wellness' },
+      ],
     },
     {
-      name: 'Developer Tools',
+      category: 'Web & Microservices',
+      icon: Layout,
+      accentColor: '#F45168', // Coral Red
+      tagBg: '#F4516812',
+      items: [
+        { name: 'React.js', status: 'Used in projects', note: 'NailEdit.frr client web app and portfolio architectures' },
+        { name: 'Vite', status: 'Used in projects', note: 'Modern frontend tooling and lightning-fast HMR builds' },
+        { name: 'Tailwind CSS', status: 'Used in projects', note: 'Utility-first responsive design systems and typography scales' },
+        { name: 'Flask', status: 'Used in projects', note: 'Python backend REST service powering MindEdu AI' },
+        { name: 'FastAPI', status: 'Practicing', note: 'Building high-throughput asynchronous APIs' },
+        { name: 'HTML5 & Modern CSS', status: 'Core fundamentals', note: 'Semantic web standards, accessibility, and micro-interactions' },
+      ],
+    },
+    {
+      category: 'Developer Tools & Workflow',
       icon: Wrench,
-      accent: 'text-yellow-500',
-      bg: 'bg-yellow-500/10',
-      skills: ['Git', 'GitHub', 'VS Code', 'Cursor AI', 'Vercel', 'Supabase']
-    }
+      accentColor: '#176B50', // Forest Green
+      tagBg: '#176B5012',
+      items: [
+        { name: 'Git & GitHub', status: 'Used in projects', note: 'Version control, branch management, and GSSoC 2026 collaboration' },
+        { name: 'VS Code & Cursor AI', status: 'Used in projects', note: 'Daily development environment and agent-assisted workflows' },
+        { name: 'REST APIs & JSON', status: 'Used in projects', note: 'Client-server contracts and data serialization' },
+      ],
+    },
   ];
 
-  const categoriesList = ['All', ...skillCategories.map(c => c.name)];
+  const statusBadgeStyles = {
+    'Used in projects': 'bg-[#176B50]/10 text-[#176B50] border border-[#176B50]/20 font-bold',
+    'Practicing': 'bg-[#2855D9]/10 text-[#2855D9] border border-[#2855D9]/20 font-bold',
+    'Core fundamentals': 'bg-[#38231F]/10 text-[#38231F] border border-[#38231F]/20 font-bold',
+  };
 
-  const filteredCategories = activeCategory === 'All'
-    ? skillCategories
-    : skillCategories.filter(c => c.name === activeCategory);
+  const filterOptions = ['All', 'Used in projects', 'Practicing', 'Core fundamentals'];
 
   return (
-    <section id="skills" className="py-24 relative bg-[#000000] border-t border-white/10">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-amber-500/5 rounded-full blur-[140px] pointer-events-none" />
-
+    <section 
+      id="skills" 
+      className="py-24 sm:py-32 relative bg-white border-t border-[#38231F]/10 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0E0E0E] border border-white/10 text-amber-400 text-xs font-mono mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-            <span>03 // CORE CAPABILITIES</span>
+        <div className="flex flex-col items-start mb-16 text-left">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="font-caveat text-2xl sm:text-3xl text-[#176B50] font-bold -rotate-1">
+              honest toolbox
+            </span>
+            <svg className="w-6 h-6 text-[#176B50]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
 
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-4">
-            Technical <span className="text-amber-gradient">Stack</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFDF8] border border-[#38231F]/15 text-xs font-mono mb-4 text-[#38231F] shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-[#176B50]" />
+            <span className="font-bold">03 // CAPABILITIES & RIGOR</span>
+          </div>
+
+          <h2 className="font-playfair text-4xl sm:text-5xl lg:text-6xl text-[#38231F] tracking-tight leading-[1.08] mb-4 max-w-4xl">
+            Technologies I <span className="italic font-normal text-[#176B50]">genuinely build with</span>.
           </h2>
           
-          <p className="text-slate-400 text-base sm:text-lg max-w-xl">
-            Technologies, frameworks, programming languages and tools I work with daily.
+          <p className="text-[#38231F]/75 text-base sm:text-lg max-w-2xl font-sans leading-relaxed">
+            No arbitrary 99% progress bars. Here is an authentic inventory of languages, frameworks, and tools I have actively applied in code or am diligently practicing.
           </p>
         </div>
 
-        {/* Filter Category Tabs */}
-        <div className="flex flex-wrap gap-2 mb-12 bg-[#0D0D0D] p-1.5 rounded-full border border-white/10 backdrop-blur-md w-fit">
-          {categoriesList.map((category) => (
+        {/* Filter Pills Bar */}
+        <div className="flex flex-wrap items-center gap-2 mb-12 p-1.5 rounded-full bg-[#FFFDF8] border border-[#38231F]/15 w-fit shadow-xs">
+          <span className="px-3 font-mono text-[11px] text-[#38231F]/60 uppercase hidden sm:inline font-bold">
+            FILTER BY STATUS:
+          </span>
+          {filterOptions.map((opt) => (
             <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2 rounded-full text-xs font-semibold font-mono transition-all duration-200 ${
-                activeCategory === category
-                  ? 'bg-amber-400 text-black font-bold shadow-lg shadow-amber-400/20'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+              key={opt}
+              onClick={() => setFilterMode(opt)}
+              className={`px-4 py-1.5 rounded-full font-mono text-xs font-semibold transition-all ${
+                filterMode === opt
+                  ? 'bg-[#38231F] text-white shadow-xs'
+                  : 'text-[#38231F]/70 hover:text-[#38231F] hover:bg-white'
               }`}
             >
-              {category}
+              {opt}
             </button>
           ))}
         </div>
 
-        {/* Categories & Skill Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCategories.map((cat) => {
+        {/* Grid of Categories in White Editorial Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skillsData.map((cat) => {
             const Icon = cat.icon;
+            const filteredSkills = filterMode === 'All'
+              ? cat.items
+              : cat.items.filter((item) => item.status === filterMode);
+
+            if (filteredSkills.length === 0) return null;
+
             return (
-              <div
-                key={cat.name}
-                className="glass-card-dark p-6 rounded-3xl border border-white/10 bg-[#0D0D0D] flex flex-col justify-between group hover:border-amber-400/40 shadow-xl"
+              <div 
+                key={cat.category}
+                className="p-7 sm:p-9 rounded-3xl bg-[#FFFDF8] border-2 border-[#38231F]/12 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left"
               >
                 <div>
                   {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className={`p-2.5 rounded-xl ${cat.bg} border border-white/10 ${cat.accent}`}>
-                      <Icon className="w-5 h-5" />
+                  <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#38231F]/10">
+                    <div className="flex items-center gap-3">
+                      <div 
+                        className="p-3 rounded-2xl shadow-xs"
+                        style={{ backgroundColor: cat.tagBg, color: cat.accentColor }}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-playfair font-bold text-2xl text-[#38231F]">
+                          {cat.category}
+                        </h3>
+                        <span 
+                          className="font-mono text-[10px] uppercase font-bold"
+                          style={{ color: cat.accentColor }}
+                        >
+                          {filteredSkills.length} Verified Modules
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="font-heading font-bold text-xl text-white group-hover:text-amber-400 transition-colors">
-                      {cat.name}
-                    </h3>
+
+                    <span 
+                      className="w-2.5 h-2.5 rounded-full"
+                      style={{ backgroundColor: cat.accentColor }}
+                    />
                   </div>
 
-                  {/* Skills Tag Cloud */}
-                  <div className="flex flex-wrap gap-2.5">
-                    {cat.skills.map((skill) => (
+                  {/* Skills List */}
+                  <div className="space-y-3">
+                    {filteredSkills.map((item) => (
                       <div
-                        key={skill}
-                        className="px-3.5 py-2 rounded-xl bg-slate-900 border border-white/10 text-slate-200 text-xs sm:text-sm font-medium hover:border-amber-400/50 hover:text-white hover:bg-slate-800 transition-all duration-200"
+                        key={item.name}
+                        onClick={() => setSelectedTech(selectedTech === item.name ? null : item.name)}
+                        className={`p-4 rounded-2xl border transition-all cursor-pointer bg-white ${
+                          selectedTech === item.name
+                            ? 'border-2 shadow-sm'
+                            : 'border-[#38231F]/10 hover:border-[#38231F]/30'
+                        }`}
+                        style={selectedTech === item.name ? { borderColor: cat.accentColor } : {}}
                       >
-                        {skill}
+                        <div className="flex items-center justify-between gap-2">
+                          <strong className="text-[#38231F] font-semibold text-sm">
+                            {item.name}
+                          </strong>
+                          <span className={`px-2.5 py-0.5 rounded-full font-mono text-[10px] ${statusBadgeStyles[item.status]}`}>
+                            {item.status}
+                          </span>
+                        </div>
+                        <p className="text-[#38231F]/70 text-xs mt-1.5 leading-relaxed font-sans">
+                          {item.note}
+                        </p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Subtle Card Footer Indicator */}
-                <div className="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                  <span>{cat.skills.length} MODULES</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                <div className="pt-4 mt-6 border-t border-[#38231F]/10 flex items-center justify-between text-[11px] font-mono text-[#38231F]/60">
+                  <span>Verified in codebase & coursework</span>
+                  <span className="font-caveat text-sm text-[#176B50] font-bold">✓ authentic</span>
                 </div>
               </div>
             );

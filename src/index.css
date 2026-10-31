@@ -2,95 +2,236 @@
 
 @layer base {
   :root {
-    --bg-black: #000000;
-    --text-primary: #FFFFFF;
-    --text-secondary: #9CA3AF;
-    --accent-amber: #F59E0B;
-    --accent-yellow: #FBBF24;
+    /* Predominantly White Palette with Expressive Accents */
+    --color-white: #FFFFFF;
+    --color-cream: #FFFDF8;
+    --color-cream-subtle: #F8F6F0;
+    --color-cream-card: #FDFBF7;
+
+    /* Deep Contrast Tones */
+    --color-espresso: #38231F;
+    --color-mocha: #6F4E37;
+    --color-ink: #181818;
+
+    /* Saturated Editorial Accents */
+    --color-coral: #F45168;
+    --color-violet: #7546C8;
+    --color-deep-lavender: #9B6DDB;
+    --color-cobalt: #2855D9;
+    --color-orange: #D96B35;
+    --color-forest: #176B50;
+
+    /* Border Tones */
+    --border-light: rgba(56, 35, 31, 0.12);
+    --border-strong: rgba(56, 35, 31, 0.22);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-white);
+    color: var(--color-ink);
   }
 
   body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    overflow-x: hidden;
+  }
+
+  /* Typography:
+     1. Display Serif: Playfair Display / Instrument Serif
+     2. Clean Sans: Inter
+     3. Handwritten Accent: Caveat */
+  .font-serif, .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-instrument {
+    font-family: 'Instrument Serif', Georgia, serif;
+  }
+
+  .font-sans, .font-inter {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #000000;
-    color: #FFFFFF;
   }
 
-  h1, h2, h3, h4, .font-heading {
-    font-family: 'Space Grotesk', sans-serif;
+  .font-caveat, .font-handwritten {
+    font-family: 'Caveat', cursive, sans-serif;
   }
 
-  code, pre, .font-code {
+  .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
-}
 
-/* Outlined Ghost Typography Stroke (Jashan Reference Style) */
-.text-stroke-hero {
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.4);
-  color: transparent;
-}
-
-@media (min-width: 768px) {
-  .text-stroke-hero {
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.45);
+  h1, h2, h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+    color: var(--color-espresso);
   }
 }
 
-.text-stroke-amber {
-  -webkit-text-stroke: 1.5px #F59E0B;
-  color: transparent;
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EDITORIAL SURFACES & CONTAINERS (Predominantly White & Cream)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.bg-warm-white {
+  background-color: #FFFFFF;
 }
 
-/* Glowing text gradient */
-.text-amber-gradient {
-  color: #F59E0B;
-  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 60%, #D97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.bg-cream-white {
+  background-color: #FFFDF8;
 }
 
-/* Subtle Background Grid & Radial Ambient Glow */
-.bg-grid-minimal {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+.bg-cream-subtle {
+  background-color: #F8F6F0;
 }
 
-.bg-radial-golden {
-  background: radial-gradient(circle at 70% 30%, rgba(245, 158, 11, 0.14) 0%, rgba(251, 191, 36, 0.04) 45%, transparent 75%);
+.bg-espresso-contrast {
+  background-color: #38231F;
 }
 
-.glass-pill-nav {
-  background: rgba(13, 13, 13, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+/* Editorial Card with Crisp Borders and Soft Elevation */
+.editorial-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(56, 35, 31, 0.12);
+  box-shadow: 0 4px 20px -2px rgba(56, 35, 31, 0.05), 0 2px 6px -1px rgba(56, 35, 31, 0.03);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card-dark {
-  background: #0D0D0D;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glass-card-dark:hover {
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 12px 35px -10px rgba(245, 158, 11, 0.18);
+.editorial-card:hover {
+  box-shadow: 0 16px 36px -4px rgba(56, 35, 31, 0.12), 0 6px 14px -2px rgba(56, 35, 31, 0.06);
   transform: translateY(-2px);
 }
 
-/* Custom Scrollbar */
+/* Subtle Notebook Grid & Dotted Textures */
+.bg-grid-notebook {
+  background-image: 
+    linear-gradient(to right, rgba(56, 35, 31, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 35, 31, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(rgba(56, 35, 31, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BUTTONS: Editorial & Authoritative
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.btn-espresso {
+  background-color: #38231F;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.85rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 16px rgba(56, 35, 31, 0.22);
+}
+
+.btn-espresso:hover {
+  background-color: #181818;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56, 35, 31, 0.32);
+}
+
+.btn-outline-espresso {
+  background-color: #FFFFFF;
+  color: #38231F;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border: 1.5px solid #38231F;
+  border-radius: 9999px;
+  padding: 0.85rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-espresso:hover {
+  background-color: #38231F;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-coral {
+  background-color: #F45168;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.85rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(244, 81, 104, 0.35);
+}
+
+.btn-coral:hover {
+  background-color: #e03a52;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(244, 81, 104, 0.5);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HANDWRITTEN ACCENTS & ANNOTATIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.handwritten-coral {
+  font-family: 'Caveat', cursive, sans-serif;
+  color: #F45168;
+}
+
+.handwritten-violet {
+  font-family: 'Caveat', cursive, sans-serif;
+  color: #7546C8;
+}
+
+.handwritten-forest {
+  font-family: 'Caveat', cursive, sans-serif;
+  color: #176B50;
+}
+
+.handwritten-orange {
+  font-family: 'Caveat', cursive, sans-serif;
+  color: #D96B35;
+}
+
+.handwritten-cobalt {
+  font-family: 'Caveat', cursive, sans-serif;
+  color: #2855D9;
+}
+
+/* Custom Scrollbar for Crisp White Theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #FFFDF8;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 4px;
+  background: #D8D3D0;
+  border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #404040;
+  background: #38231F;
+}
+
+/* Reduced Motion Safety */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
