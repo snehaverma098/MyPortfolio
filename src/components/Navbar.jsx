@@ -54,46 +54,44 @@ const Navbar = () => {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 transform ${
         scrolled 
-          ? 'opacity-100 translate-y-0 pointer-events-auto bg-white/95 backdrop-blur-md shadow-sm border-b border-[#38231F]/10 py-3.5' 
+          ? 'opacity-100 translate-y-0 pointer-events-auto bg-[#5C1F2E]/95 backdrop-blur-xl shadow-xl shadow-black/40 border-b border-[#E8C9A0]/20 py-3.5' 
           : 'opacity-0 -translate-y-full pointer-events-none py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand Wordmark */}
+        {/* Brand Monogram Wordmark */}
         <a 
           href="#hero" 
           className="flex items-center gap-2.5 group"
           aria-label="Sneha Verma - Return to top"
         >
-          <div className="flex items-baseline gap-1">
-            <span className="font-playfair text-xl sm:text-2xl font-bold text-[#38231F] tracking-tight group-hover:text-[#F45168] transition-colors">
-              Sneha Verma
-            </span>
-            <span className="w-2 h-2 rounded-full bg-[#F45168]" />
+          <div className="w-8 h-8 rounded-full bg-[#2D0C15] border border-[#E8C9A0]/30 flex items-center justify-center font-playfair font-bold text-sm">
+            <span className="text-[#E8C9A0]">S</span>
+            <span className="text-[#B5476A] italic">V</span>
           </div>
-          <span className="hidden xl:inline-block font-caveat text-base text-[#7546C8] font-semibold -rotate-2 ml-1">
-            developer & builder
+          <span className="font-playfair text-lg font-bold text-[#F7E6E1] tracking-tight group-hover:text-[#E8C9A0] transition-colors">
+            Sneha <span className="text-[#B5476A] italic">Verma</span>
           </span>
         </a>
 
-        {/* Desktop Nav Links (Clean, readable Inter with subtle indicators) */}
-        <nav className="hidden md:flex items-center gap-1 sm:gap-2 font-sans text-sm" role="navigation" aria-label="Main Navigation">
+        {/* Desktop Nav Links */}
+        <nav className="hidden md:flex items-center gap-1.5 font-sans text-sm" role="navigation" aria-label="Main Navigation">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
                 key={link.name}
                 href={link.href}
-                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 relative font-medium ${
+                className={`px-3.5 py-1.5 rounded-full transition-all duration-200 relative text-xs font-medium tracking-wide ${
                   isActive 
-                    ? 'text-[#38231F] font-bold bg-[#F8F6F0]' 
-                    : 'text-[#38231F]/70 hover:text-[#38231F] hover:bg-[#F8F6F0]/60'
+                    ? 'text-[#E8C9A0] font-bold bg-[#B5476A]/25 border border-[#E8C9A0]/30' 
+                    : 'text-[#F7E6E1]/80 hover:text-[#E8C9A0] hover:bg-[#B5476A]/15'
                 }`}
               >
                 <span>{link.name}</span>
                 {isActive && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-0.5 bg-[#F45168] rounded-full" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2.5 h-0.5 bg-[#B5476A] rounded-full" />
                 )}
               </a>
             );
@@ -108,20 +106,20 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             download="Sneha_Verma_Resume.pdf"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-sans text-xs font-semibold text-[#38231F] bg-white border border-[#38231F]/20 hover:border-[#38231F] hover:bg-[#F8F6F0] transition-all shadow-xs"
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full font-sans text-xs font-semibold text-[#F7E6E1] bg-[#2D0C15]/80 border border-[#E8C9A0]/30 hover:border-[#E8C9A0] hover:bg-[#B5476A]/25 transition-all shadow-xs"
             title="Download verified resume"
           >
-            <Download className="w-3.5 h-3.5 text-[#38231F]" />
+            <Download className="w-3.5 h-3.5 text-[#E8C9A0]" />
             <span>Résumé</span>
           </a>
 
           {/* Contact Action */}
           <a
             href="#contact"
-            className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full font-sans text-xs font-semibold text-white bg-[#38231F] hover:bg-[#181818] transition-all shadow-sm hover:scale-[1.02]"
+            className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-full font-sans text-xs font-semibold text-white bg-[#B5476A] hover:bg-[#9E3658] border border-[#E8C9A0]/40 transition-all shadow-md hover:scale-105"
           >
             <span>Let's Talk</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#E8C9A0]" />
           </a>
         </div>
 
@@ -129,14 +127,14 @@ const Navbar = () => {
         <div className="flex md:hidden items-center gap-2">
           <a
             href="#contact"
-            className="px-3.5 py-1.5 rounded-full font-sans text-xs font-semibold text-white bg-[#38231F]"
+            className="px-3 py-1.5 rounded-full font-sans text-xs font-semibold text-white bg-[#B5476A]"
           >
             Contact
           </a>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-[#38231F] hover:bg-[#F8F6F0] transition-colors"
+            className="p-2 rounded-lg text-[#F7E6E1] hover:bg-[#2D0C15] transition-colors"
             aria-label="Toggle navigation drawer"
             aria-expanded={mobileMenuOpen}
           >
@@ -148,7 +146,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-[#38231F]/10 px-6 py-6 shadow-lg animate-fadeIn">
+        <div className="md:hidden bg-[#2D0C15] border-b border-[#E8C9A0]/20 px-6 py-6 shadow-2xl animate-fadeIn text-[#F7E6E1]">
           <nav className="flex flex-col space-y-3 font-sans text-base">
             {navLinks.map((link) => (
               <a
@@ -157,26 +155,26 @@ const Navbar = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`py-2 px-3 rounded-xl transition-colors font-medium flex items-center justify-between ${
                   activeSection === link.id
-                    ? 'bg-[#F8F6F0] text-[#38231F] font-bold'
-                    : 'text-[#38231F]/80 hover:bg-[#F8F6F0]'
+                    ? 'bg-[#B5476A]/25 text-[#E8C9A0] font-bold border border-[#E8C9A0]/30'
+                    : 'text-[#F7E6E1]/80 hover:bg-[#B5476A]/10'
                 }`}
               >
                 <span>{link.name}</span>
                 {activeSection === link.id && (
-                  <span className="w-2 h-2 rounded-full bg-[#F45168]" />
+                  <span className="w-2 h-2 rounded-full bg-[#B5476A]" />
                 )}
               </a>
             ))}
 
-            <div className="pt-4 border-t border-[#38231F]/10 flex flex-col gap-3">
+            <div className="pt-4 border-t border-[#E8C9A0]/20 flex flex-col gap-3">
               <a
                 href="/sneha_verma_resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 download="Sneha_Verma_Resume.pdf"
-                className="w-full py-2.5 rounded-full text-center font-sans text-sm font-semibold border border-[#38231F]/20 text-[#38231F] flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-full text-center font-sans text-sm font-semibold border border-[#E8C9A0]/40 text-[#F7E6E1] bg-[#5C1F2E] flex items-center justify-center gap-2"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-4 h-4 text-[#E8C9A0]" />
                 <span>Download Résumé</span>
               </a>
             </div>

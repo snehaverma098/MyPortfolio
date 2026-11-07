@@ -11,7 +11,7 @@ import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="relative min-h-screen bg-white text-[#181818] selection:bg-[#F45168] selection:text-white">
+    <div className="relative min-h-screen bg-white text-[#181818] selection:bg-[#B5476A] selection:text-white">
       {/* Main Header / Navigation */}
       <Navbar />
 
